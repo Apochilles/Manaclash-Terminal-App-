@@ -1,1 +1,6 @@
-type,colour,name,cost,sub_type,keyword,stats,flavour_text
+9,Ogre,green,creature,Lifegain,A creature of few words and many muscles 
+6,Counter,blue,spell,Counter a spell,Shazam! 
+4,Lightning,red,spell,Deal damage,shock
+2,Soldier,white,creature,Double strike,average joe
+1,Goblin,black,creature,Speed,small but scary
+

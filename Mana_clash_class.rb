@@ -1,5 +1,7 @@
+require 'csv'
 require 'pry'
 require 'artii'
+require 'colorize'
 
 
 cards = []
@@ -68,7 +70,7 @@ def creature_ability(subtype)
         puts "you favour survivability"
     end
 
-    if @subtype == "Speed"
+    if subtype == "Speed"
         puts "those that strike first, win"
     end
 end
@@ -93,14 +95,22 @@ def buildACard
     flavour = gets.chomp 
     puts `clear`
     puts "Congrats! #{name} is born."
- 
+
+    CSV.open("card_list.csv", "a+") do |csv|
+        csv << [cost, name, colour, type,flavour]
+    
+    end
     return {cost: cost, type: type, colour: colour, name: name, flavour: flavour}
 end
 
+    #edit(cost, type, colour, name, flavour)
+
+
+
 def showHeader
-    puts `artii 'Mana Clash'`      
-    puts `artii '      You are'`  
-    puts `artii 'the creator'`
+    puts `artii 'Mana Clash'`.colorize(:color => :blue)      
+    puts `artii '      You are'`.colorize(:color => :red)  
+    puts `artii 'the creator'`.colorize(:color => :blue)
 end
 
 # Above this line is all my methods
@@ -148,8 +158,9 @@ loop do
 
 
 
-            puts   "This Will edit your cards"
+            puts   "What card would you like to edit"
             puts    cards
+            name = gets.chomp 
 
 
         elsif input == "3"
@@ -189,29 +200,3 @@ end
    
 
 
-
-# mc = Manaclash.new
-
-# mc.menu
-
-
-
-# # class 
-
-
-
-# #     def initialize(name,id,bla)
-
-# #         @name = name
-
-# #         @id = id
-
-# #         @bla = bla
-
-# #     end
-
-
-
-
-
-# #end
