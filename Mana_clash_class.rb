@@ -1,5 +1,6 @@
 require 'csv'
 require 'pry'
+
 require 'artii'
 require 'colorize'
 
@@ -36,13 +37,15 @@ end
 
 def subtype(type)
     if type == "spell"
-         puts "What attribute would you like your spell to have? \n Deal damage \n Counter a spell \n  Mend damage" 
-        subtype = gets.chomp  
-        spell_ability(subtype)
+         puts "What attribute would you like your spell to have? \n Deal damage \n Counter a spell \n Mend damage" 
+        subtype_spell = gets.chomp  
+        spell_ability(subtype_spell)
+        return subtype_spell
     elsif type == "creature"
         puts "What ability would you like your creature to have? \n Double Strike \n Lifegain \n Speed "
-        subtype = gets.chomp
-        creature_ability(subtype)
+        subtype_creature = gets.chomp
+        creature_ability(subtype_creature)
+        return subtype_creature
     end     
 end
 
@@ -76,9 +79,12 @@ def creature_ability(subtype)
 end
 
 def buildACard
+    puts `clear`
     puts "How much does your card cost in mana"
     cost = gets.chomp.to_i
+    #if not integer method 
 
+    puts `clear`
     puts "Is your card a spell or a creature"  
     type = gets.chomp
     # If type is x, use subtext method
@@ -89,18 +95,17 @@ def buildACard
     name = gets.chomp 
     puts `clear`
 
-    subtype(type)
-
+    ability = subtype(type)
+    puts `clear`
     puts "Would you like to include a description?" 
     flavour = gets.chomp 
     puts `clear`
     puts "Congrats! #{name} is born."
 
-    CSV.open("card_list.csv", "a+") do |csv|
-        csv << [cost, name, colour, type,flavour]
-    
+    CSV.open("card_list.csv", "a+", {headers: true}) do |csv|
+        csv << [cost, name, colour, type, ability , flavour]
     end
-    return {cost: cost, type: type, colour: colour, name: name, flavour: flavour}
+    return {cost: cost, name: name, colour: colour, type: type, ability: ability, flavour: flavour}
 end
 
     #edit(cost, type, colour, name, flavour)
@@ -109,8 +114,8 @@ end
 
 def showHeader
     puts `artii 'Mana Clash'`.colorize(:color => :blue)      
-    puts `artii '      You are'`.colorize(:color => :red)  
-    puts `artii 'the creator'`.colorize(:color => :blue)
+    puts `artii 'You are'`.colorize(:color => :red)  
+    puts `artii 'the creator'`.colorize(:color => :green)
 end
 
 # Above this line is all my methods
