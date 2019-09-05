@@ -4,7 +4,7 @@ require 'pry'
 require 'artii'
 require 'colorize'
 require "tty-prompt"
-prompt = TTY::Prompt.new
+
 
 cards = []
 
@@ -83,8 +83,15 @@ end
 def buildACard
     puts `clear`
     puts "How much does your card cost in mana"
-    cost = gets.chomp.to_i
-    #if not integer method 
+    cost = gets.chomp
+    if cost.class == Integer  
+        
+    else puts "That is not a number"
+         buildACard
+end
+    
+    
+    
 
 
     puts `clear`
@@ -166,6 +173,7 @@ loop do
         
         elsif input == "2"
 
+            prompt = TTY::Prompt.new
 
             puts `clear`
             puts   "What card would you like to edit? \n
