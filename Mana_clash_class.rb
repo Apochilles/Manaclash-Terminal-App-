@@ -371,14 +371,17 @@ loop do
             found_card = card_list.find{|name| name == [input]}
             puts found_card
 
-            puts "how'd you like to change #{input}"
+            binding.pry
+
+            puts "how'd you like to change it"
             new_input = gets.chomp
 
            card_list[card_list.index(found_card)] = [new_input]
 
             CSV.open("Card_list.csv", "w") do |csv|
-            fruits_file.each do |name|
+                card_list.each do |name|
             csv << name
+            
             end
         end
 
