@@ -3,8 +3,8 @@ require 'pry'
 
 require 'artii'
 require 'colorize'
-# require "tty-prompt"
-# prompt = TTY::Prompt.new
+require "tty-prompt"
+prompt = TTY::Prompt.new
 
 cards = []
 
