@@ -10,11 +10,9 @@ cards = []
 def subtext(type)
   if type == 'spell'
 
-
     puts `clear`
 
   elsif type == 'creature'
-
 
     puts `clear`
 
@@ -178,8 +176,8 @@ loop do
   elsif input == '2'
 
     puts `clear`
-    puts CSV.read("Card_list.csv", headers: true)
-
+    puts 
+    puts CSV.read('Card_list.csv', headers: true)
 
   elsif input == '3'
 
