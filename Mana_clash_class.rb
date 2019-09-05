@@ -28,7 +28,7 @@ end
 def getAColor
   puts 'Is your card blue, red, white, black or green?'
 
-  colours = [red blue green white black]
+  colours = %w[red blue green white black]
 
   colour = gets.chomp.downcase
 
@@ -160,7 +160,7 @@ showHeader
 loop do
   puts 'Welcome to Manaclash card creator and editor! What would you like to do:'
   puts '1. Create a new card'
-  puts '2. Edit the name of a card'
+  puts '2. Display card list'
   puts '3. Exit'
 
   print 'Enter Option Number: '
@@ -177,38 +177,8 @@ loop do
 
   elsif input == '2'
 
-
-    card_list = CSV.read('Card_list.csv')
-    card_list.shift
-
-    card_list.each do |card|
-      p card
-    end
-
-    puts "What card name would like to change \n
-
-                                                 "
-    if input = gets.chomp
-
-    found_card = card_list.find { |card| card.include?(input) }
-    puts found_card
-
-    elsif card =! name
-
-    puts "I don't understand"
-
-    end
-
-    puts "What would you like to change it to"
-    new_input = gets.chomp
-
-    card_list[card_list.index(found_card)][1] = new_input
-    p card_list
-    CSV.open('Card_list.csv', 'w') do |csv|
-      card_list.each do |card|
-        csv << card
-      end
-    end
+    puts `clear`
+    puts CSV.read("Card_list.csv", headers: true)
 
 
   elsif input == '3'
