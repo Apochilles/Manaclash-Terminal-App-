@@ -2,23 +2,13 @@ require 'csv'
 
 require 'pry'
 
-
-
 require 'artii'
 
 require 'colorize'
 
 require "tty-prompt"
 
-
-
-
-
 cards = []
-
-
-
-
 
 def subtext(type)
 
@@ -41,7 +31,6 @@ def subtext(type)
     end
 
 end
-
 
 
 def getAColor
@@ -236,18 +225,7 @@ def buildACard
 
 end
 
-
-
-    
-
-
-
     #edit(cost, type, colour, name, flavour)
-
-
-
-
-
 
 
 def showHeader
@@ -259,13 +237,6 @@ def showHeader
     puts `artii 'the creator'`.colorize(:color => :green)
 
 end
-
-
-
-
-
-
-
 
 
 # Above this line is all my methods
@@ -281,37 +252,9 @@ loop do
 
 
             puts "Welcome to Manaclash card creator and editor! What would you like to do:"
-
-
-
-        
-
-
-
             puts "1. Create a new card"
-
-
-
-        
-
-
-
             puts "2. Edit a card"
-
-
-
-        
-
-
-
             puts "3. Remove a card"
-
-
-
-        
-
-
-
             puts "4. Exit"
 
 
@@ -362,28 +305,31 @@ loop do
 
                                                         "
 
-            card_list = CSV.read("Card_list.csv", headers: true)
+            card_list = CSV.read("Card_list.csv")
+            card_list.shift
 
-            puts card_list
+            card_list.each do |card|
+                p card        
+            end
+
 
             input = gets.chomp
             
-            found_card = card_list.find{|name| name == [input]}
+            found_card = card_list.find{|card| card.include?(input)}
             puts found_card
 
-            binding.pry
+            #binding.pry
 
             puts "how'd you like to change it"
             new_input = gets.chomp
 
-           card_list[card_list.index(found_card)] = [new_input]
-
+           card_list[card_list.index(found_card)][1] = new_input
+            p card_list
             CSV.open("Card_list.csv", "w") do |csv|
-                card_list.each do |name|
-            csv << name
-            
+                card_list.each do |card|
+                    csv << card
+                end
             end
-        end
 
         elsif input == "3"
 
