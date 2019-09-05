@@ -3,9 +3,11 @@ require 'pry'
 
 require 'artii'
 require 'colorize'
-
+# require "tty-prompt"
+# prompt = TTY::Prompt.new
 
 cards = []
+
 
 def subtext(type)
     if type == "spell"
@@ -84,6 +86,7 @@ def buildACard
     cost = gets.chomp.to_i
     #if not integer method 
 
+
     puts `clear`
     puts "Is your card a spell or a creature"  
     type = gets.chomp
@@ -118,12 +121,14 @@ def showHeader
     puts `artii 'the creator'`.colorize(:color => :green)
 end
 
+
+
+
 # Above this line is all my methods
 # This is where you now call your methods
 showHeader
 
 loop do
-
 
             puts "Welcome to Manaclash card creator and editor! What would you like to do:"
 
@@ -162,9 +167,10 @@ loop do
         elsif input == "2"
 
 
-
-            puts   "What card would you like to edit"
-            puts    cards
+            puts `clear`
+            puts   "What card would you like to edit? \n
+                                                        "
+            puts    CSV.read("Card_list.csv", headers: true)
             name = gets.chomp 
 
 
