@@ -369,32 +369,18 @@ loop do
             input = gets.chomp
             
             found_card = card_list.find{|name| name == [input]}
-            p found_card
+            puts found_card
 
-            # puts "how'd you like to change #{input}"
-            # new_input = gets.chomp
+            puts "how'd you like to change #{input}"
+            new_input = gets.chomp
 
-# puts "please enter your fruit"
-# input = gets.chomp
+           card_list[card_list.index(found_card)] = [new_input]
 
-# found_item = fruits_file.find{|fruit| fruit == [input]}
-# p found_item
-
-# puts "how'd you like to change it"
-# new_input = gets.chomp
-
-# fruits_file[fruits_file.index(found_item)] = [new_input]
-
-# CSV.open("fruits.csv", "w") do |csv|
-#   fruits_file.each do |fruit|
-#     csv << fruit
-#   end
-        
-
-
-
-
-
+            CSV.open("Card_list.csv", "w") do |csv|
+            fruits_file.each do |name|
+            csv << name
+            end
+        end
 
         elsif input == "3"
 
