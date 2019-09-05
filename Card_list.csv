@@ -1,5 +1,7 @@
-6,Counter,blue,spell,Counter a spell,Shazam!
-4,Lightning,red,spell,Deal damage,shock
-2,Soldier,white,creature,Double strike,average joe
-1,Goblin,black,creature,Speed,small but scary
-5,Luke_new,blue,spell,Deal damage,new card
+
+Ogre,9,green,creature,Lifegain,Of few words and many muscles 
+Counter,6,blue,spell,Counter a spell,Shazam!
+Lightning,4,red,spell,Deal damage,shock
+Soldier,2,white,creature,Double strike,average joe
+Goblin,1,black,creature,Speed,small but scary
+Luke,3,blue,spell,Deal damage,new card

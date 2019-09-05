@@ -10,13 +10,11 @@ cards = []
 def subtext(type)
   if type == 'spell'
 
-    puts 'simply spellbinding...'
 
     puts `clear`
 
   elsif type == 'creature'
 
-    puts 'Ah.. into the creature comforts I see'
 
     puts `clear`
 
@@ -30,7 +28,7 @@ end
 def getAColor
   puts 'Is your card blue, red, white, black or green?'
 
-  colours = %w[red blue green white black]
+  colours = [red blue green white black]
 
   colour = gets.chomp.downcase
 
@@ -162,9 +160,8 @@ showHeader
 loop do
   puts 'Welcome to Manaclash card creator and editor! What would you like to do:'
   puts '1. Create a new card'
-  puts '2. Edit a card'
-  puts '3. Remove a card'
-  puts '4. Exit'
+  puts '2. Edit the name of a card'
+  puts '3. Exit'
 
   print 'Enter Option Number: '
 
@@ -191,12 +188,16 @@ loop do
     puts "What card name would like to change \n
 
                                                  "
-    input = gets.chomp
+    if input = gets.chomp
 
     found_card = card_list.find { |card| card.include?(input) }
     puts found_card
 
-    # binding.pry
+    elsif card =! name
+
+    puts "I don't understand"
+
+    end
 
     puts "What would you like to change it to"
     new_input = gets.chomp
@@ -209,10 +210,8 @@ loop do
       end
     end
 
+
   elsif input == '3'
-
-
-  elsif input == '4'
 
     break
 
