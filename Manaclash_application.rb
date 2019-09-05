@@ -36,6 +36,7 @@ def getAColor
 
     puts `clear`
 
+  
     return colour
 
   else
@@ -108,7 +109,6 @@ def buildACard
 
   type = gets.chomp
 
-  # If type is x, use subtext method
 
   subtext(type)
 
@@ -139,7 +139,6 @@ def buildACard
   { cost: cost, name: name, colour: colour, type: type, ability: ability, flavour: flavour }
 end
 
-# edit(cost, type, colour, name, flavour)
 
 def showHeader
   puts `artii 'Mana Clash'`.colorize(color: :blue)
@@ -149,9 +148,6 @@ def showHeader
   puts `artii 'the creator'`.colorize(color: :green)
 end
 
-# Above this line is all my methods
-
-# This is where you now call your methods
 
 showHeader
 
