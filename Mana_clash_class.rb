@@ -4,7 +4,6 @@ require 'csv'
 require 'pry'
 require 'artii'
 require 'colorize'
-require 'tty-prompt'
 
 cards = []
 
@@ -181,7 +180,6 @@ loop do
 
   elsif input == '2'
 
-    prompt = TTY::Prompt.new
 
     card_list = CSV.read('Card_list.csv')
     card_list.shift
@@ -190,7 +188,7 @@ loop do
       p card
     end
 
-    puts "What card would you like to edit (name? \n
+    puts "What card name would like to change \n
 
                                                  "
     input = gets.chomp
@@ -200,7 +198,7 @@ loop do
 
     # binding.pry
 
-    puts "how'd you element would you like to change"
+    puts "What would you like to change it to"
     new_input = gets.chomp
 
     card_list[card_list.index(found_card)][1] = new_input
@@ -213,19 +211,6 @@ loop do
 
   elsif input == '3'
 
-    puts 'This WILL remove your cards'
-
-    card_list = CSV.read('Card_list.csv')
-    card_list.shift
-
-    card_list.each do |card|
-      p card
-    end
-
-    puts "What card would you like to remove?\n
-
-                                                 "
-    input = gets.chomp
 
   elsif input == '4'
 
