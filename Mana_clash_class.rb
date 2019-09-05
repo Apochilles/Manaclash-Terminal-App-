@@ -84,11 +84,11 @@ def buildACard
     puts `clear`
     puts "How much does your card cost in mana"
     cost = gets.chomp
-    if cost.class == Integer  
-        
-    else puts "That is not a number"
-         buildACard
-end
+
+    if cost.to_i.to_s != cost
+        puts "That is not a number"
+        buildACard    
+    end
     
     
     
@@ -117,6 +117,8 @@ end
     end
     return {cost: cost, name: name, colour: colour, type: type, ability: ability, flavour: flavour}
 end
+
+    
 
     #edit(cost, type, colour, name, flavour)
 
