@@ -1,6 +1,6 @@
 
 
-##                       Update 11:30 - Thursday the 5th of Septemeber 
+##                       Update 11:30 - Thursday the 5th of September 
 
 I just spent an hour wondering if my "Edit" feature will just need to edit strings - not my CSV file - simplifying my final coding task immensely but I'm pretty sure this is wrong I will need to write straight to CSV as I initially thought. 
  

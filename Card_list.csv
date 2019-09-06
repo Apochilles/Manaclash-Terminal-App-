@@ -4,3 +4,5 @@ cost,name,colour,type,ability,flavour
 4,Lightning,red,spell,Deal damage,shock
 2,Soldier,white,creature,Double strike,average joe
 1,Goblin,black,creature,Speed,small but scary
+1,test,blue,spell,Deal damage,A new card
+9,Monster,red,creature,Double Strike ,New

@@ -1,6 +1,6 @@
 
 
-##                       Update 10:35 - Wednesday the 4th of Septemeber 
+##                       Update 10:35 - Wednesday the 4th of September 
 
 
 I have just finished a key element of my code. I how have a Class method that produces an object that represents a card with attributes assigned via user input. There is the issue that my code isn't as dry as I'd hoped it would be but streamlining can come later  
