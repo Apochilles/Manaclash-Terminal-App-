@@ -7,18 +7,38 @@ require 'colorize'
 
 cards = []
 
+def manaCost
+  puts 'How much does your card cost in mana'
+
+  cost = gets.chomp
+
+  if cost.to_i.to_s == cost
+
+    cost
+
+  else
+
+    puts 'That is not a number'
+
+    manaCost
+
+  end
+end
+
 def subtext(type)
-  if type == 'spell'
+  puts 'Is your card a spell or a creature'
 
-    puts `clear`
+  type = gets.chomp
 
-  elsif type == 'creature'
+  if (type == 'spell') || (type == 'creature')
 
-    puts `clear`
+    type
 
   else
 
     puts "I don't understand"
+
+    subtext(type)
 
   end
 end
@@ -26,7 +46,7 @@ end
 def getAColor
   puts 'Is your card blue, red, white, black or green?'
 
-  colours = %w[red blue green white black]
+  colours = ['red', 'blue', 'green gfg', 'white', 'black']
 
   colour = gets.chomp.downcase
 
@@ -34,10 +54,7 @@ def getAColor
 
     puts "Your card is #{colour}"
 
-    puts `clear`
-
-  
-    return colour
+    colour
 
   else
 
@@ -49,28 +66,48 @@ def getAColor
 end
 
 def subtype(type)
+  subtypes = %w[Damage Counter Mend Doublestrike Lifegain Speed]
+
   if type == 'spell'
 
-    puts "What attribute would you like your spell to have? \n Deal damage \n Counter a spell \n Mend damage"
+    puts "What attribute would you like your spell to have?\nDamage\nCounter\nMend"
 
     subtype_spell = gets.chomp
 
-    spell_ability(subtype_spell)
+    if subtypes.include?(subtype_spell)
 
-    subtype_spell
+      spell_ability(subtype_spell)
+
+      subtype_spell
+
+    else
+
+      puts 'I do not understand'
+
+      subtype(type)
+
+    end
 
   elsif type == 'creature'
 
-    puts "What ability would you like your creature to have? \n Double Strike \n Lifegain \n Speed "
+    puts "What ability would you like your creature to have?\nDoublestrike\n Lifegain\nSpeed "
 
     subtype_creature = gets.chomp
 
-    creature_ability(subtype_creature)
+    if subtypes.include?(subtype_creature)
 
-    subtype_creature
+      creature_ability(subtype_creature)
 
+      subtype_creature
+
+    else
+
+      puts 'I do not understand'
+
+      subtype(type)
+      end
+    end
   end
-end
 
 def spell_ability(subtype)
   puts 'You like power' if subtype == 'Deal damage'
@@ -88,57 +125,45 @@ def creature_ability(subtype)
   puts 'those that strike first, win' if subtype == 'Speed'
 end
 
-def buildACard
-  puts `clear`
-
-  puts 'How much does your card cost in mana'
-
-  cost = gets.chomp
-
-  if cost.to_i.to_s != cost
-
-    puts 'That is not a number'
-
-    buildACard
-
-  end
-
-  puts `clear`
-
-  puts 'Is your card a spell or a creature'
-
-  type = gets.chomp
-
-
-  subtext(type)
-
-  colour = getAColor
-
+def creatureName
   puts 'What is the name of your creation'
 
   name = gets.chomp
+end
 
-  puts `clear`
-
-  ability = subtype(type)
-
-  puts `clear`
-
+def flavourText
   puts 'Would you like to include a description?'
 
   flavour = gets.chomp
+end
 
-  puts `clear`
-
-  puts "Congrats! #{name} is born."
-
+def csvSave(cost:, name:, colour:, type:, ability:, flavour:)
   CSV.open('card_list.csv', 'a+', headers: true) do |csv|
     csv << [cost, name, colour, type, ability, flavour]
   end
+end
+
+def buildACard
+  `clear`
+
+  cost = manaCost
+
+  type = subtext(type)
+
+  colour = getAColor
+
+  binding.pry
+
+  ability = subtype(type)
+
+  name = creatureName
+
+  flavour = flavourText
+
+  puts "\nCongrats! #{name} is born."
 
   { cost: cost, name: name, colour: colour, type: type, ability: ability, flavour: flavour }
 end
-
 
 def showHeader
   puts `artii 'Mana Clash'`.colorize(color: :blue)
@@ -148,16 +173,14 @@ def showHeader
   puts `artii 'the creator'`.colorize(color: :green)
 end
 
-
 showHeader
 
 loop do
-  puts 'Welcome to Manaclash card creator and editor! What would you like to do:'
+  puts "\nWelcome to Manaclash card creator and editor! What would you like to do:"
   puts '1. Create a new card'
   puts '2. Display card list'
   puts '3. Exit'
-
-  print 'Enter Option Number: '
+  print "\nEnter Option Number:"
 
   input = gets.chomp
 
@@ -166,14 +189,16 @@ loop do
     card = buildACard
 
     puts card
+    csvSave(card)
 
     cards << card
 
   elsif input == '2'
 
     puts `clear`
-    puts 
-    puts CSV.read('Card_list.csv', headers: true)
+    puts CSV.read('card_list.csv', headers: true)
+    print "\npress any key to continue\n"
+    gets
 
   elsif input == '3'
 
@@ -181,7 +206,7 @@ loop do
 
   else
 
-    puts 'anything'
+    puts "I don't understand"
 
   end
 end
