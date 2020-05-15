@@ -28,7 +28,7 @@ end
 def subtext(type)
   puts 'Is your card a spell or a creature'
 
-  type = gets.chomp
+  type = gets.chomp.downcase
 
   if (type == 'spell') || (type == 'creature')
 
@@ -46,7 +46,7 @@ end
 def getAColor
   puts 'Is your card blue, red, white, black or green?'
 
-  colours = ['red', 'blue', 'green gfg', 'white', 'black']
+  colours = ['red', 'blue', 'green', 'white', 'black']
 
   colour = gets.chomp.downcase
 
@@ -138,7 +138,7 @@ def flavourText
 end
 
 def csvSave(cost:, name:, colour:, type:, ability:, flavour:)
-  CSV.open('card_list.csv', 'a+', headers: true) do |csv|
+  CSV.open('Card_list.csv', 'a+', headers: true) do |csv|
     csv << [cost, name, colour, type, ability, flavour]
   end
 end
@@ -151,8 +151,6 @@ def buildACard
   type = subtext(type)
 
   colour = getAColor
-
-  binding.pry
 
   ability = subtype(type)
 
@@ -196,7 +194,7 @@ loop do
   elsif input == '2'
 
     puts `clear`
-    puts CSV.read('card_list.csv', headers: true)
+    puts CSV.read('Card_list.csv', headers: true)
     print "\npress any key to continue\n"
     gets
 
