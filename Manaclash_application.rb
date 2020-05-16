@@ -14,6 +14,8 @@ def manaCost
 
   if cost.to_i.to_s == cost
 
+    puts "Your card costs #{cost}"
+
     cost
 
   else
@@ -31,6 +33,8 @@ def subtext(type)
   type = gets.chomp.downcase
 
   if (type == 'spell') || (type == 'creature')
+
+    puts "You have chosen a #{type} card"
 
     type
 
@@ -90,7 +94,7 @@ def subtype(type)
 
   elsif type == 'creature'
 
-    puts "What ability would you like your creature to have?\nDoublestrike\n Lifegain\nSpeed "
+    puts "What ability would you like your creature to have?\nDoublestrike\nLifegain\nSpeed "
 
     subtype_creature = gets.chomp
 
@@ -110,15 +114,15 @@ def subtype(type)
   end
 
 def spell_ability(subtype)
-  puts 'You like power' if subtype == 'Deal damage'
+  puts 'You like power' if subtype == 'Damage'
 
-  puts 'You like to protect' if subtype == 'Counter a spell'
+  puts 'You like to protect' if subtype == 'Counter'
 
-  puts 'You like to heal' if subtype == 'Mend damage'
+  puts 'You like to heal' if subtype == 'Mend'
 end
 
 def creature_ability(subtype)
-  puts 'You covert strength' if subtype == 'Double strike'
+  puts 'You covert strength' if subtype == 'Doublestrike'
 
   puts 'you favour survivability' if subtype == 'Lifegain'
 
