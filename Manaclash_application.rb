@@ -28,11 +28,11 @@ def manaCost
 end
 
 def subtext(type)
-  puts 'Is your card a spell or a creature'
+  puts 'Is your card a Spell or a Creature'
 
-  type = gets.chomp.downcase
+  type = gets.chomp.capitalize
 
-  if (type == 'spell') || (type == 'creature')
+  if (type == 'Spell') || (type == 'Creature')
 
     puts "You have chosen a #{type} card"
 
@@ -48,11 +48,11 @@ def subtext(type)
 end
 
 def getAColor
-  puts 'Is your card blue, red, white, black or green?'
+  puts 'Is your card Blue, Red, White, Black or Green?'
 
-  colours = ['red', 'blue', 'green', 'white', 'black']
+  colours = ['Red', 'Blue', 'Green', 'White', 'Black']
 
-  colour = gets.chomp.downcase
+  colour = gets.chomp.capitalize
 
   if colours.include?(colour)
 
@@ -72,11 +72,11 @@ end
 def subtype(type)
   subtypes = %w[Damage Counter Mend Doublestrike Lifegain Speed]
 
-  if type == 'spell'
+  if type == 'Spell'
 
     puts "What attribute would you like your spell to have?\nDamage\nCounter\nMend"
 
-    subtype_spell = gets.chomp
+    subtype_spell = gets.chomp.capitalize
 
     if subtypes.include?(subtype_spell)
 
@@ -92,11 +92,11 @@ def subtype(type)
 
     end
 
-  elsif type == 'creature'
+  elsif type == 'Creature'
 
     puts "What ability would you like your creature to have?\nDoublestrike\nLifegain\nSpeed "
 
-    subtype_creature = gets.chomp
+    subtype_creature = gets.chomp.capitalize
 
     if subtypes.include?(subtype_creature)
 
